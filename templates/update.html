@@ -1,0 +1,17 @@
+{% extends 'base.html'  %}
+
+{%  block head  %}
+<title>Decrypted Message</title>
+{%  endblock  %}
+
+{%  block body  %}
+<div class="content">
+    <h1 style="text-align:center">The Decryption of this Message is shown below!!</h1>
+    <form action="/update/{{task.id}}" method="POST">
+        <h5 style="text-align:center">Encrypted Message: {{ task.content }}</h5>
+        <!--The Decrypted Message will be shown here!!-->
+        <h5 style="text-align:center">Decrypted Message: {{ decrypted }}</h5>
+        <input type="submit" value="Continue">
+    </form>
+</div>
+{%  endblock  %}

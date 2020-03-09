@@ -1,0 +1,56 @@
+{% extends 'base.html'  %}
+
+{%  block head  %}
+<title>A Symmetric Algorithm</title>
+{%  endblock  %}
+
+{%  block body  %}
+<div class="content">
+    <h1 style="text-align:center">Symmetric Algorithm</h1>
+    {%  if tasks|length < 1 %}
+    <h4 style="text-align:center">A Demonstration of a Symmetric Algorithm!</h4>
+    {% else %}
+    <table>
+        <tr>
+            <th>Encrypted Message</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.date() }}</td>
+                <td>
+                    <a href="/delete/{{task.id}}">Delete</a>
+                    <br>
+                    <a href="/update/{{task.id}}">Decrypt</a>
+                </td>
+            </tr>
+        {% endfor  %}
+    </table>
+    <!--An explanation of the symmetric encryption algorithm used in this program-->
+    <p style= "text-align:center">
+    Symmetric algorithms are used to improve security in applications. The one that I made for this application is but 
+    a demonstration of one simple but effective algorithm that can enhance security. The user would input a message for encryption. 
+    This program would then look through each character of that string and translate it to Unicode.
+    </p>
+    <p style= "text-align:center">
+    The Unicode representation of that character (which would be a number) would then be added by 5 and then converted back into a 
+    character. This would then be repeated for each character of that string and then all of them would be put in order and assigned 
+    to one single variable of type string. That variable would contain the encryption of that message.
+    </p>
+    <p style=text-align:center>
+    The decryption portion of the algorithm is doing the exact opposite. For each character, you convert it into its Unicode
+    representation, subtract it by 5, and then convert it back into a character. Putting all of these characters in order and assigned
+    to one variable of type string, the message would be decrypted and printed in its original format.
+    </p>
+    {% endif %}
+    <div class="form-inline">
+    <form action="/" method="POST">
+    <h5 style="text-align:center">What is the message you want to encrypt?</h5>
+    <input type="text" name="content" id="content">
+    <input type="submit" value="Encrypt">
+    </form>
+    </div>
+</div>
+{%  endblock  %}
